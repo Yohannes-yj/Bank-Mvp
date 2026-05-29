@@ -1,17 +1,16 @@
 name: Automated PR Review
 
-# 1. The Trigger: This runs whenever a Pull Request is opened against the 'main' branch
+# 1. Trigger: Runs whenever a Pull Request is opened against the 'main' branch
 on:
   pull_request:
     branches: [ "main" ]
 
-# 2. The Job: What the robot will actually do
 jobs:
-  build-and-check:
+  review-pipeline:
     runs-on: ubuntu-latest # Spins up a fresh Linux machine
 
     steps:
-    # Step A: Download your repository's code onto the machine
+    # Step A: Download your repository's code
     - name: Checkout Code
       uses: actions/checkout@v4
 
@@ -22,6 +21,17 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Step C: Attempt to compile all Java files. If this fails, the PR fails.
-    - name: Compile Java Code
+    # Step C: Check if the code compiles
+    - name: ⚙️ Compile Java Code
       run: javac *.java
+
+    # Step D: Run your custom automated tests
+    - name: 🧪 Run Automated Tests
+      run: java BankTest
+
+    # Step E: Code Quality Check using Checkstyle
+    # This downloads a popular Java linting tool and scans your files for standard style formatting
+    - name: 🔎 Run Code Quality Checks
+      run: |
+        wget -qO checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.12.4/checkstyle-10.12.4-all.jar
+        java -jar checkstyle.jar -c /sun_checks.xml BankMVP.java

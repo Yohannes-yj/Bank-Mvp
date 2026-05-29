@@ -12,7 +12,7 @@ public class BankTest {
         SavingsAccount testAccount = new SavingsAccount("Test User", 1000.0, 5.0f);
         
         // Run the method we are testing
-        testAccount.calculateInterest(); 
+        testAccount.calaculateInterest(); 
         
         // At 5%, interest should be $50. The new balance should be $1050.
         double expectedBalance = 1050.0;

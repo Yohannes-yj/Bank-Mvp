@@ -1,0 +1,27 @@
+name: Automated PR Review
+
+# 1. The Trigger: This runs whenever a Pull Request is opened against the 'main' branch
+on:
+  pull_request:
+    branches: [ "main" ]
+
+# 2. The Job: What the robot will actually do
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest # Spins up a fresh Linux machine
+
+    steps:
+    # Step A: Download your repository's code onto the machine
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # Step B: Install the Java Development Kit (JDK)
+    - name: Set up Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    # Step C: Attempt to compile all Java files. If this fails, the PR fails.
+    - name: Compile Java Code
+      run: javac *.java

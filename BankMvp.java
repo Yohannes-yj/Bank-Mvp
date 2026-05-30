@@ -45,6 +45,10 @@ public void calaculateInterest() {
     System.out.println("Savings Interest Earned: $" + interest);
     setBalance(getBalance() + interest);
 }
+
+    void calculateInterest() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
 class CurrentAccount extends BankAccount {
     public CurrentAccount(String accountHolder, double balance) {

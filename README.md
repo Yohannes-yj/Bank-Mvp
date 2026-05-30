@@ -5,6 +5,8 @@ This repository contains a Minimum Viable Product (MVP) simulating a core bankin
 
 This project serves as a practical submission for the BITS College Object-Oriented Programming course.
 
+The program creates different types of bank accounts, displays their information, and calculates interest according to the account type.
+
 ## 📌 The Four Pillars of OOP Demonstrated
 
 This codebase rigidly adheres to standard Java conventions while implementing the following principles:

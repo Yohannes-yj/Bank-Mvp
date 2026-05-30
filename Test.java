@@ -1,4 +1,4 @@
-public class BankTest {
+public class Test {
     public static void main(String[] args) {
         System.out.println("Running Automated Tests...");
 
